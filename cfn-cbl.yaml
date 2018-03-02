@@ -1,13 +1,21 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Metadata:
   License: Apache-2.0
+Description: 'Cloudformation template to set up neccessary resources for
+    Cloudberrylab client to backup cloud storage.  This will create
+    a s3 bucket with the appropriate options, create an IAM user, user keys
+    group, and policy.  Group will attach the policy created which only allows
+    require rights and only adds elevated rights to the specific bucket.  Outputs
+    keys.  Adds 2 s3 lifecycle policies 1. to transition to glacier and 2
+    to abort incomplete multipart uploads after 7 days'
 Parameters:
   Identifier:
     Type: String
-    Description: Enter account identifier (customername, servername, etc.)
+    Description: 'Enter account identifier (customername, servername, etc.)
+        * Must be unique to your AWS Account *'
   BucketName:
     Type: String
-    Description: S3 BucketName
+    Description: S3 BucketName * Must be unique to AWS *
   DaysTillTransition:
     Type: Number
     Default: 1
