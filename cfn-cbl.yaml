@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Metadata: 
+Metadata:
   License: Apache-2.0
 Parameters:
   Identifier:
@@ -18,11 +18,11 @@ Resources:
     Properties:
       BucketName: !Ref BucketName
       VersioningConfiguration:
-        Status: Suspended       
+        Status: Suspended
       BucketEncryption:
         ServerSideEncryptionConfiguration:
         - ServerSideEncryptionByDefault:
-            SSEAlgorithm: AES256     
+            SSEAlgorithm: AES256
       LifecycleConfiguration:
         Rules:
           - Id: GlacierArchive
@@ -30,6 +30,10 @@ Resources:
             Transitions:
               - StorageClass: GLACIER
                 TransitionInDays: !Ref DaysTillTransition
+          - Id: abort-multipart
+            Status: Enabled
+            AbortIncompleteMultipartUpload:
+              DaysAfterInitiation: 7
       AccessControl: BucketOwnerFullControl
   CFNUser:
     Type: AWS::IAM::User
@@ -64,9 +68,9 @@ Resources:
       PolicyDocument:
         Version: 2012-10-17
         Statement:
-        - 
+        -
           Effect: Allow
-          Action: 
+          Action:
             - "s3:ListBucket"
             - "s3:GetBucketAcl"
             - "s3:GetBucketVersioning"
@@ -75,7 +79,7 @@ Resources:
             - "s3:GetBucketPolicy"
           Resource: !GetAtt S3Bucket.Arn
         - Effect: Allow
-          Action: 
+          Action:
             - "s3:GetObject"
             - "s3:DeleteObject"
             - "s3:DeleteObjectVersion"
@@ -104,4 +108,3 @@ Outputs:
   AccessKey:
     Value: !Ref 'CFNKeys'
     Description: AWSAccessKeyId of new user
-  
