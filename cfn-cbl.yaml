@@ -19,9 +19,9 @@ Parameters:
   BucketName:
     Type: String
     Description: S3 BucketName * Must be unique to AWS *
-    MinLength: 3
+    MinLength: 6
     MaxLength: 63
-    AllowedPattern: ^[a-z0-9-.]*$
+    AllowedPattern: ^([a-z]|(\d(?!\d{0,2}\.\d{1,3}\.\d{1,3}\.\d{1,3})))([a-z\d]|(\.(?!(\.|-)))|(-(?!\.))){1,61}[a-z\d\.]$
   DaysTillTransition:
     Type: Number
     Default: 1
