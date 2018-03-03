@@ -13,9 +13,15 @@ Parameters:
     Type: String
     Description: 'Enter account identifier (customername, servername, etc.)
         * Must be unique to your AWS Account *'
+    MinLength: 1
+    MaxLength: 41
+    AllowedPattern: ^[a-zA-Z0-9]*$
   BucketName:
     Type: String
     Description: S3 BucketName * Must be unique to AWS *
+    MinLength: 3
+    MaxLength: 63
+    AllowedPattern: ^[a-z0-9-.]*$
   DaysTillTransition:
     Type: Number
     Default: 1
