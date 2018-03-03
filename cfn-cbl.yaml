@@ -10,12 +10,12 @@ Description: 'Cloudformation template to set up neccessary resources for
     to abort incomplete multipart uploads after 7 days'
 Parameters:
   Identifier:
-    AllowedPattern: '^[a-zA-Z0-9.-]*$'
+    AllowedPattern: '^[a-zA-Z0-9+=,.@_-]*$'
     Type: String
     Description: 'Enter account identifier (customername, servername, etc.)
         * Must be unique to your AWS Account *'
     MinLength: 1
-    MaxLength: 41
+    MaxLength: 60
   BucketName:
     AllowedPattern: '^([a-z]|(\d(?!\d{0,2}\.\d{1,3}\.\d{1,3}\.\d{1,3})))([a-z\d]|(\.(?!(\.|-)))|(-(?!\.))){1,61}[a-z\d]$'
     Type: String
