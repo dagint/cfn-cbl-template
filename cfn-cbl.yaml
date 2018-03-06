@@ -47,7 +47,7 @@ Resources:
           - Id: abort-multipart
             Status: Enabled
             AbortIncompleteMultipartUpload:
-              DaysAfterInitiation: 7
+              DaysAfterInitiation: 3
       AccessControl: BucketOwnerFullControl
   CFNUser:
     Type: AWS::IAM::User
